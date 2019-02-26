@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过style修改样式</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app" :style="[styleObj,{fontSize:'30px'}]" @click="handleDivClick()">
+    {{content}}
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            content:"hello world",
+            styleObj:{
+                color:'black'
+            }
+        },
+        methods:{
+            handleDivClick(){
+                this.styleObj.color = this.styleObj.color==="black"?"red":"black"
+            }
+        }
+    })
+</script>
+</body>
+</html>

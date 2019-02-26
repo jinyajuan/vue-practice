@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的样式绑定</title>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app" :class="{active:isActive}" @click="handleDivClick()">
+    {{content}}
+</div>
+
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            content:'hello world',
+            isActive:false
+        },
+        methods:{
+            handleDivClick:function () {
+                this.isActive=!this.isActive;
+            }
+        }
+    })
+</script>
+</body>
+</html>

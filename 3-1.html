@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div @click="handleItemClick">{{message}}</div>
+    <item></item>
+</div>
+
+<script>
+    Vue.component('item',{           //全局组件
+        template:"<div @click='handleItemClick'>hello item</div>",
+        methods:{
+            handleItemClick(){
+                alert("hello item")
+            }
+        }
+    })
+    var vm=new Vue({
+        el:"#app",
+        data:{
+         message:"hello world"
+        },
+        methods:{
+            handleItemClick(){
+                alert("hello world")
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

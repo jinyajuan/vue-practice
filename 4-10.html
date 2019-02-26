@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插槽默认内容</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <child></child>
+</div>
+<script>
+    Vue.component("child",{
+        template:`<div>
+                        <slot>默认内容</slot>
+                        <p>hello world</p>
+                  </div>`
+    })
+    var vm=new Vue({
+        el:"#app"
+    })
+</script>
+
+</body>
+</html>

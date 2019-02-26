@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的样式</title>
+    <script src="vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+        .active_one{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div @click="handleDivClick()" :class="[active,active_one]">
+        {{content}}
+    </div>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            content:"hello world",
+            active:"",
+            active_one:"active_one"
+        },
+        methods:{
+            handleDivClick(){
+                this.active= this.active==="active"? '' : 'active';
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

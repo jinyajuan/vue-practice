@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ref加在子组件上面</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <counter @change="handleTotal()" ref="one"></counter>
+    <counter @change="handleTotal()" ref="two"></counter>
+    <span>点击总计:{{total}}</span>
+</div>
+<script>
+    Vue.component('counter',{
+        template:"<button @click='handleClick()'>{{number}}</button>",
+        data:function () {
+            return {
+                number:0
+            }
+        },
+        methods:{
+            handleClick(){
+                this.number++;
+                this.$emit("change")
+            }
+        }
+    })
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            total:0
+        },
+        methods:{
+            handleTotal(){
+                this.total=this.$refs.one.number+this.$refs.two.number
+            }
+        }
+    })
+</script>
+</body>
+</html>

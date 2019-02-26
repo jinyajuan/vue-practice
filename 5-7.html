@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的js动画</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <transition
+            name="fade"
+            @before-enter="handleBeforeEnter"
+            @enter="handleEnter"
+            @after-enter="handleAfterEnter"
+            @before-leave="handleBeforeLeave"
+            @leave="handleLeave"
+            @after-leave="handleAfterLeave"
+    >
+        <div v-if="show">hello world</div>
+    </transition>
+    <button @click="handleClick">change</button>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            show:true
+        },
+        methods:{
+            handleClick:function () {
+                this.show=!this.show
+            },
+            handleBeforeEnter:function (el) {
+                el.style.color="red"
+            },
+            handleEnter:function (el,done) {
+                setTimeout(function () {
+                    el.style.color="yellow"
+                },2000)
+                setTimeout(function () {
+                    done()
+                },4000)
+            },
+            handleAfterEnter:function (el) {
+                el.style.color="blue"
+            },
+            handleBeforeLeave:function (el) {
+                el.style.color="#ccc"
+            },
+            handleLeave:function (el,done) {
+                setTimeout(function () {
+                    el.style.color="#999"
+                },2000)
+                setTimeout(function () {
+                    done()
+                },4000)
+            },
+            handleAfterLeave:function (el) {
+                el.style.color="#333"
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

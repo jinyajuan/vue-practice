@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="inputValue">
+    <button v-on:click="handleBtnClick"></button>
+    <ul>
+        <todo-item v-for="item in List" v-bind:content="item"></todo-item>
+    </ul>
+</div>
+<!--
+父组件向子组件传值：
+v-bind:XXX="item"
+props:['XXX'],
+-->
+<script>
+    var TodoItem={
+        props:['content'],
+        template:'<li>{{content}}</li>'
+    }
+
+    var vm=new Vue({
+        el:"#app",
+        components:{
+          TodoItem
+        },
+        data:{
+            List:[],
+            inputValue:''
+        },
+        methods:{
+            handleBtnClick(){
+                this.List.push(this.inputValue)
+                this.inputValue=''
+            }
+        }
+    })
+
+</script>
+
+</body>
+</html>

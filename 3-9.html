@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-if="show" @click="handleDivClick()">{{message}}</div>
+    <div v-else @click="handleDivClick()">bye world</div>
+    <div v-show="show">{{message}}</div>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            show:false,
+            message:"hello world"
+        },
+        methods:{
+            handleDivClick(){
+                this.show=!this.show;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

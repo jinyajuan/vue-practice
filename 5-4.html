@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刷新页面也显示动画</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="vue.js"></script>
+    <style>
+        .enter,.leave-to{
+            opacity: 0;
+        }
+        .v-enter-active,.v-leave-active{
+            transition: opacity 3s;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <transition
+            appear
+            enter-active-class="animated swing v-enter-active"
+            leave-active-class="animated shake v-leave-active"
+            appear-active-class="animated swing"
+    >
+        <div v-if="show">hello world</div>
+    </transition>
+    <button @click="handleClick">change</button>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            show:true
+        },
+        methods:{
+            handleClick:function () {
+                this.show=!this.show
+            }
+        }
+    })
+</script>
+</body>
+</html>

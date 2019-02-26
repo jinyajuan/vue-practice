@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="inputValue">
+    <button v-on:click="handleBtnClick">添加</button>
+    <ul>
+        <li v-for="item in List">{{item}}</li>
+    </ul>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            List:[],
+            inputValue:""
+        },
+        methods:{
+            handleBtnClick(){
+                this.List.push(this.inputValue);
+                this.inputValue="";
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
