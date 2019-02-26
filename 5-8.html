@@ -33,7 +33,7 @@
                 this.show=!this.show
             },
             handleBeforeEnter:function (el) {
-                el.style.opacity=0
+                el.style.opacity=0;
             },
             handleEnter:function (el,done) {
                 Velocity(el,{
@@ -47,18 +47,18 @@
                 console.log("动画结束");
             },
             handleBeforeLeave:function (el) {
-                el.style.color="#ccc"
+                el.style.opacity=1;
             },
             handleLeave:function (el,done) {
-                setTimeout(function () {
-                    el.style.color="#999"
-                },2000)
-                setTimeout(function () {
-                    done()
-                },4000)
+                Velocity(el,{
+                    opacity:0
+                },{
+                    duration:1000,
+                    complete:done
+                })
             },
             handleAfterLeave:function (el) {
-                el.style.color="#333"
+                console.log("动画结束");
             }
 
         }
