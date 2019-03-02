@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        //默认情况下代码
+        function Person() {
+            this.age = 0;
+            setTimeout(function() {
+                console.log(this);
+            }, 1000);
+        }
+
+        var p = new Person();//3秒后返回 window 对象
+
+//通过bind绑定
+            function Person() {
+                this.age = 0;
+                setTimeout((function() {
+                    console.log(this);
+                }).bind(this), 1000);
+            }
+
+        var p = new Person();//3秒后返回构造函数新生成的对象 Person{...}
+        window.onload=function () {
+
+
+            // var num=10;
+            // var obj={
+            //     num:20,
+            //     fn:function () {
+            //         console.log(this.num);
+            //     }
+            // }
+            // obj.fn()   //20
+
+            // var num=10;
+            // var obj={
+            //     num:20,
+            //     fn:function(){
+            //         setTimeout(function(){
+            //             console.log(this.num);
+            //         },1000);
+            //     }
+            // }
+            // obj.fn()   //10
+
+
+            // var obj = {
+            //     func: function() {
+            //         console.log(this);      //Object
+            //     },
+            //     say: function () {
+            //         var that = this;   //此时的this就是obj对象
+            //         setTimeout(function () {
+            //             console.log(this)   //Window
+            //             that.func()
+            //         });
+            //     }
+            // }
+            // obj.say();
+
+            // window.val = 1;
+            // var obj = {
+            //     val: 2,
+            //     dbl: function () {
+            //         console.log(this);      //Window
+            //         console.log(val);       //1
+            //         console.log(this.val);  //1
+            //
+            //         this.val *= 2;
+            //         val *= 2;
+            //
+            //         console.log(val);       //4
+            //         console.log(this.val);  //4
+            //     }
+            // };
+            //
+            // var func=obj.dbl;
+            // func()
+//
+//
+// console.log(this.document===document)   //true
+//
+// console.log(this===window);             //true
+//
+// this.a=12;
+// console.log(window.a);                  //12
+//
+//
+// function f1(){
+//     return this;
+// }
+//
+// console.log( f1() === window ); // true
+//
+// function f2(){
+//     "use strict"; // 这里是严格模式
+//     return this;
+// }
+// console.log( f2() === undefined ); // true
+//
+// var o = {
+//     prop: 37,
+//     f: function() {
+//         return this.prop;
+//     }
+// };
+// console.log(o.f());  //37
+//
+// var a1 = o.f();
+// console.log(a1);     //37
+//
+// var a2 = o.f;
+// console.log(a2);     //   ƒ () {return this.prop;}
+// console.log(a2());   //undefined
+//
+// var o = {
+//     prop: 37,
+//     f:f1
+// };
+//
+// function f1() {
+//     return this.prop;
+// }
+//
+//
+// console.log(o.f());  //37
+//
+// var a1 = f1();
+// console.log(a1);     //37
+//
+// var a2 = f;
+// console.log(a2);     //   ƒ () {return this.prop;}
+// console.log(a2());   //undefined
+
+
+// //1.
+//             var prop=10
+//             var o = {
+//                 prop: 20,
+//                 f: function() {
+//                     return this.prop;
+//                 }
+//             };
+//             console.log(o.f());  //20
+//
+//
+// //2.
+//             var a = o.f;         //此时“return this.prop;”中的this指向了window
+//             console.log(a());    //10    如果window中没有prop变量，则返回undefined
+
+
+// //3.
+// var o = {prop: 30};
+// function independent() {
+//     return this.prop;
+// }
+//
+// console.log(o.f);     //undefined，后面定义的对象o覆盖了之前的对象，此时f函数不存在
+// // console.log(o.f());   //o.f is not a function
+// o.f = independent;    //此时，independent()函数中的this指向的是后面定义的o对象
+// console.log(o.f);     //ƒ independent() {return this.prop;}
+// console.log(o.f());   // 30
+//
+// //4.
+// function independent1() {
+//     return this;
+// }
+//
+// o.b = {
+//     f:independent,
+//     f1:independent1,
+//     prop: 42
+// };
+// console.log(o.b.f()); //   42
+// console.log(o.b.f1()); //  {f: ƒ, f1: ƒ, prop: 42}，此时的this指向的是o.b对象，就近原则
+
+            // var o = {
+            //     f : function(){
+            //         return this.a + this.b;
+            //     },
+            //     f1:function () {
+            //         return this;
+            //     }
+            // };
+            // var p = Object.create(o);
+            // p.a = 1;
+            // p.b = 4;
+            //
+            // console.log(p.f());   // 5
+            // console.log(p.f1());  //{a: 1, b: 4}
+            // console.log(o.f());   //NaN
+            // console.log(o.f1());  //{f: ƒ, f1: ƒ}
+
+//1.
+//             function C1(){
+//                 this.a = 37;
+//             }
+//             var o1 = new C1();
+//             console.log(o1.a); //  37
+//
+// //2.
+//             function C2(){
+//                 return this;
+//             }
+//             var o2 = new C2();
+//             console.log(o2); //  C2{}
+//
+// //3.
+//             function C3(){
+//                 this.a = 37;
+//                 return {a:38};
+//             }
+//             var b = new C3();
+//             console.log(b.a); //  38
+
+// function bluify(e) {
+// //    在控制台打印出所点击的元素
+//     console.log(this);
+// //    阻止事件冒泡
+//     e.stopPropagation();
+// //    阻止默认事件
+//     e.preventDefault();
+// //    当前元素的背景颜色改变
+//     this.style.backgroundColor="red"
+// }
+//
+// var el=document.getElementsByTagName("div");
+//
+// for(var i=0;i<el.length;i++){
+//     el[i].addEventListener('click',bluify,false)   //默认false，在冒泡阶段执行
+// }
+
+        }
+    </script>
+</head>
+<body>
+
+<!--<button onclick="console.log(this);"></button>-->
+<!--<button onclick="(function() {console.log(this);})()"></button>-->
+<!--<button onclick="(function () {'use strict';console.log(this);})()"></button>-->
+
+</body>
+</html>

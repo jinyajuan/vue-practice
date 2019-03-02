@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            new Vue({
+                el:"#app",
+                data:{
+                    family:'',
+                    last:"",
+                },
+                computed:{
+                    name:{
+                        get(){
+                            return this.family+this.last;
+                        },
+                        set(newName){
+                            this.family=newName.charAt(0);
+                            this.last=newName.substring(1);
+                        }
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    姓: <input type="text" v-model="family">
+    名: <input type="text" v-model="last">
+    <span>{{name}}</span>
+    <hr>
+    <input type="text" v-model="name">
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            let vm=new Vue({
+                el:"#app",
+                data:{
+                    show:true
+                },
+                methods:{
+                    isShow(){
+                        this.show=!this.show;
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <form action="http://localhost:8080/" method="get">
+        <input type="text" name="user" value="jinnyajuan"> <br>
+        <input type="password" name="pass" value="12321"> <br>
+        <input type="checkbox" @click="isShow"> 是否发送邮件  <br>
+        <input type="email" name="email" v-if="show" value="123@qq.com">  <br>
+        <input type="submit" value="提交">
+    </form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            let em=new Vue({
+                el:"#app",
+                data:{
+                    spanStyle:{
+                        color:"",
+                        fontSize:"20px"
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="spanStyle.color">
+    <span :style="spanStyle"></span>
+</div>
+</body>
+</html>

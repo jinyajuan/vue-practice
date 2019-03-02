@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            let vm=new Vue({
+                el:"#app",
+                data:{
+                    user:[
+                        {"name":"张胜男","age":"12"},
+                        {"name":"小花","age":"22"},
+                        {"name":"刘德华","age":"42"}
+                    ]
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item,index in user">
+            <i>{{index}}</i>
+            姓名：{{item.name}},
+            年龄：{{item.age}}
+        </li>
+    </ul>
+
+</div>
+
+</body>
+</html>

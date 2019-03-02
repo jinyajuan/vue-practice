@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+
+    <script>
+        window.onload=function () {
+            new Vue({
+                el:"#app",
+                data:{
+                    a:""
+                },
+                watch:{
+                    a(newVal,oldVal){
+                        console.log(`a变化了，从${oldVal}变成了${newVal}`)
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="a">
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            let vm=new Vue({
+                el:"#app",
+                data:{
+                    user:{
+                        "001":{name:"张三丰","age":"22"},
+                        "002":{name:"杨千嬅","age":"34"},
+                        "003":{name:"王大锤","age":"51"},
+                    }
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item,id in user">
+            {{id}}:
+            {{item.name}},
+            {{item.age}}
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

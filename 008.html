@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            let vm=new Vue({
+                el:"#app",
+                data:{
+                    show:true
+                },
+                methods:{
+                    isShow(){
+                        this.show=!this.show;
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <input type="button" @click="isShow()">
+    <div class="box" v-if="show"></div>
+</div>
+
+</body>
+</html>

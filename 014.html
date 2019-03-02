@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            new Vue({
+                el:"#app",
+                data:{
+                    arr:[
+                        {ID:1,name:"张三",age:37},
+                        {ID:2,name:"李四",age:29},
+                        {ID:3,name:"王五",age:35},
+                        {ID:5,name:"赵六",age:20},
+                        {ID:6,name:"杨七",age:27},
+                        {ID:8,name:"刘八",age:30}
+                    ]
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="json in arr" :key="json.ID">
+            姓名：{{json.name}},年龄：{{json.age}}
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

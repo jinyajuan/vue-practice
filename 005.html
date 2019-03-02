@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue.js/node_modules/vue/dist/vue.js"></script>
+    <script>
+        window.onload=function(){
+            let vm=new Vue({
+                el:"#app",
+                data:{
+                    count:0
+                },
+                methods:{
+                    fnclick(){
+                        this.count++;
+                    }
+                }
+            })
+
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <span>{{count}}</span>
+    <button v-on:click="fnclick">按钮</button>
+</div>
+</body>
+</html>

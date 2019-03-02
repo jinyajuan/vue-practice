@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+//         //默认情况下代码
+//         function Person() {
+//             this.age = 0;
+//             setTimeout(function() {
+//                 console.log(this);
+//             }, 1000);
+//         }
+//
+//         Person()             //window
+//         var p = new Person();//1秒后返回 window 对象
+//
+// // 通过bind绑定
+// function Person1() {
+//     this.age = 0;
+//     setTimeout((function() {
+//         console.log(this);
+//     }).bind(this), 1000);
+// }
+//
+// var p = new Person1();//1秒后返回构造函数新生成的对象 Person{...}
+// Person1()             //window
+
+//         function Person(){
+//             this.age = 0;
+//
+//             setTimeout(() => {
+//                 this.age++; // this 指向 Person
+//                 console.log(this);   //Person age=1
+//             }, 1000);
+//         }
+//
+//         var p = new Person();
+//         console.log(p);             //Person age=0
+//
+// var obj = {
+//     say: function () {
+//         setTimeout(() => {
+//             console.log(this)
+//         });
+//     }
+// }
+// obj.say(); // obj
+//
+// var obj = {
+//     say: function () {
+//         var f1 = () => {
+//             console.log(this); // obj
+//             setTimeout(() => {
+//                 console.log(this); // obj
+//             })
+//         }
+//         f1();
+//     }
+// }
+// obj.say()
+
+// var obj = {
+//      say: function () {
+//         var f1 = function () {
+//             console.log(this);    // window, f1调用时,没有宿主对象,默认是window
+//         };
+//         f1();
+//      }
+// }
+// obj.say()
+
+// //1
+// var x=1;
+// var obj={
+//     x:2,
+//     say:()=>{
+//         console.log(this);     // window
+//         console.log(this.x);   // 1
+//     }
+// }
+// obj.say();
+//
+// //2
+// var a=3;
+// function test(){
+//     this.a=4;
+//     var fn=()=>{
+//         console.log(this);      //test
+//         console.log(this.a)     //4
+//     }
+//     fn();
+// }
+// var x=new test();
+//
+// //3
+// var b=5;
+// function test2(){
+//     this.b=6;
+//     let func=()=>{
+//         console.log(this);     //window
+//         console.log(this.b)    //6
+//     }
+//     func();
+// }
+// test2();
+
+// var stu1={
+//     name:"小明",
+//     age:18,
+//     sex:"男",
+//     say:function (school,grade,score,address) {
+//         console.log(`姓名：${this.name},性别：${this.sex},
+//                      年龄：${this.age}岁，学校：${school},
+//                      年级：${grade},成绩：${score}
+//                      住址：${address}`)
+//     }
+// }
+//
+// var stu2={
+//     name:"小花",
+//     sex:"女",
+//     age:16
+// }
+//
+// stu1.say.call(stu2,"黄埔一中","高一",88)
+// stu1.say.apply(stu2,["衡水中学","高二",98,"北京","123@qq.com"])
+// stu1.say.bind(stu2,"黄冈高中","高三",100,"湖北")()
+
+// var arr=[2,46,81,100,999]
+        // console.log(Math.max.apply(arr, arr));
+        // console.log(Math.min.call(arr, [2,46,81,100,999]));
+
+// console.log(Object.prototype.toString.call("qq"));             //[object String]
+// console.log(Object.prototype.toString.call(12));               //[object Number]
+// console.log(Object.prototype.toString.call(false));            //[object Boolean]
+// console.log(Object.prototype.toString.call(null));             //[object Null]
+// console.log(Object.prototype.toString.call(undefined));        //[object Undefined]
+// console.log(Object.prototype.toString.call([]));               //[object Array]
+// console.log(Object.prototype.toString.call({}));               //[object Object]
+// console.log(Object.prototype.toString.call(function () {}));   //[object Function]
+//
+// console.log(Object.prototype.toString.call(NaN));              //[object Number]
+
+// function getType(x) {
+//     var obj=Object.prototype.toString.call(x)
+//     var sub=obj.substr(8)  // substr(start,length)  start 要抽取的子符串的起始下标，
+//                            // length 截取的长度，如果不写则表示从start开始截取到最后
+//     var type=sub.substr(0,sub.length-1).toLowerCase();
+//     return type;
+// }
+//
+// console.log(getType(12));      //number
+// console.log(getType({}));      //object
+// console.log(getType("hello")); //string
+
+// //思路:将字符串转化为数组，借用数组中的reverse，将字符串翻转过来
+// var str = "abcdefg";
+// console.log(Array.prototype.reverse.call(str)); //此时会报错误，即引用类型错误，就是说只有数组才能使用reverse这个方法；(错误写法)
+//
+// //方法一：这种方法内有使用call()
+// var arr =  Array.from(str).reverse().join("") //将字符串转化为数组，在进行翻转，然后在进行拼接
+// console.log(arr) //gfedcba
+// console.log(typeof arr) //string
+//
+// //方法二：
+// var rs = Array.prototype.reverse.call(str.split("")).join("");
+// //split(separator,howmany) 方法用于把一个字符串分割成字符串数组。
+// //如果把空字符串 ("") 用为参数那么字符串中的每个字符之间都会被分割
+// console.log(rs);               //gfedcba
+// console.log(typeof arr)        //string
+window.onload=function () {
+// var oBtn=document.getElementById("btn")
+// var oDiv=document.getElementById("div")
+//
+// oBtn.onclick=function () {
+//     console.log(this.innerHTML);
+// }.bind(oDiv)
+
+    // if (!function() {}.bind) {
+    //     Function.prototype.bind = function(context) {
+    //         var self = this
+    //         var args = Array.prototype.slice.call(arguments);
+    //
+    //         return function() {
+    //             return self.apply(context, args.slice(1));
+    //         }
+    //     };
+    // }
+
+
+
+
+    function a(){};
+
+    a.prototype.func = function(){
+        console.log(this);                  //a
+        // console.log(a.prototype === this);  //false
+        // console.log(a === this);            //false
+        // console.log(b === this);            //true
+    };
+
+    var b = new a();
+
+    b.func();
+
+    console.log(b===a);
+    console.log(b);
+    console.log(a);
+
+    // a.prototype.func()
+
+
+}
+    </script>
+</head>
+<body>
+<button id="btn">按钮</button>
+<div id="div">江上之清风</div>
+</body>
+</html>
